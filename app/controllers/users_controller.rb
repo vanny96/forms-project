@@ -15,4 +15,21 @@ class UsersController < ApplicationController
       puts @user.errors.messages
     end
   end
+
+  def edit
+    @user = User.find params[:id]
+    render :new
+  end
+
+  def update
+    @user = User.find params[:id]
+
+    if @user.update user_params
+      redirect_to new_user_path
+    else
+      render :new
+      puts @user.errors.messages
+    end
+
+  end
 end
